@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: PaymentConsumer
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: payment-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.example.paymentApp.PaymentConsumer.dto.UserEvent
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  logging:
+    # Sets the global default logging level
+    level:
+      root: INFO
+      # Silences verbose internal Apache Kafka client logs
+      org.apache.kafka: WARN
+      # Captures your custom Spring Boot components
+      com.example.PaymentApp: DEBUG
+
+    # Controls console output formatting
+    pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+    # (Optional) Saves logs to a physical directory
+    file:
+      name: logs/kafka-app.log
