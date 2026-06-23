@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
   application:
     name: PaymentConsumer
@@ -30,3 +32,9 @@ spring:
     # (Optional) Saves logs to a physical directory
     file:
       name: logs/kafka-app.log
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

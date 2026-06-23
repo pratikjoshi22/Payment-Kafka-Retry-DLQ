@@ -1,6 +1,13 @@
 package com.example.paymentApp.PaymentConsumer.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "User event payload sent to Kafka")
 public class UserEvent {
+
+
+
+
 
     public String getId() {
         return id;
@@ -10,6 +17,7 @@ public class UserEvent {
         this.id = id;
     }
 
+    @Schema(description = "Unique user ID", example = "user-123")
     private String id;
 
     public UserEvent(String id, String name, String address) {
@@ -18,7 +26,10 @@ public class UserEvent {
         this.address = address;
     }
 
+    @Schema(description = "User name", example = "John Doe")
     private String name;
+
+    @Schema(description = "User address", example = "123 Main St")
     private String address;
 
     // Standard Boilerplate (or use Lombok @Data)
