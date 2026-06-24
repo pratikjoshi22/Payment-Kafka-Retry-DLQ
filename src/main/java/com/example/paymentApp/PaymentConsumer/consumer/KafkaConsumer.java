@@ -15,9 +15,13 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "customer-payment", groupId = "payment-group")
     public void consumeUserEvent(UserEvent userEvent,
-                                 @Header(KafkaHeaders.RECEIVED_KEY) String key){
-        logger.info("Event Received with ID "+key );
+                                 @Header(KafkaHeaders.RECEIVED_KEY) String key, @Header(KafkaHeaders.RECEIVED_PARTITION) int partitionId){
+        logger.info("Event Received with ID: "+key+" on Partition: "+ partitionId);
         logger.info("Username {}, Address {}", userEvent.getName(), userEvent.getAddress());
+
+        //here we before this line we have simulated simple producer and consumer happy path behavior from below we introduce simple failure
+
+        throw new RuntimeException("Gateway Down 😂");
 
 
     }

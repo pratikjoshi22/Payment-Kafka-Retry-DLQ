@@ -13,7 +13,7 @@ public class KafkaConfig {
 
         // 1. Automatically creates the topic in KRaft on startup
         return TopicBuilder.name("customer-payment")
-                .partitions(1)
+                .partitions(3)
                 .replicas(1)
                 .build();
     }
